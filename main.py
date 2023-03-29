@@ -21,7 +21,9 @@ class HomePage(Screen):
         preco_prod_antigo = self.ids.valor_conta_antiga.text
         cupom_usada = self.ids.cupom_conta_antiga.text
         link_aff = self.ids.link_afiliado.text
-
+        if not imagem_prod:
+            self.ids.url_imagem.text = "Campo obrigatório"
+            return
 
         send_message_f(-1001887279681, photo=f"{imagem_prod}", caption_entities=[
             f"{desc_prod}\n\n\u26A1 {title_prod[0:75]}\n\n\u27A1 {link_aff}\n\n\U0001F525 Conta Nova\n\u2705 Valor: R${preco_prod}\U0001f631\U0001f631\U0001f631\n\U0001F3F7 Use o cupom: {cupom_desc}\n\n\U0001F525 Conta Antiga\n\u2705 Valor: R${preco_prod_antigo}\U0001f631\U0001f631\U0001f631\n\U0001F3F7 Use o cupom: {cupom_usada}\n\n\u27A1 {link_aff}"
@@ -109,6 +111,7 @@ class HomePage(Screen):
         pass
 class PostPage(Screen):
     def enviar_msg(self):
+
         print("BOTAO OK")
         desc_prod = self.ids.desc_prod.text
         title_prod = self.ids.title_prod.text
@@ -119,6 +122,9 @@ class PostPage(Screen):
         valor_2 = self.ids.valor_v2.text
         v3_prod = self.ids.v_3.text
         valor_3 = self.ids.valor_v3.text
+        if not imagem_prod:
+            self.ids.url_imagem.text = "Campo obrigatório"
+            return
 
         #cupom_desc = self.ids.cupom_conta_nova.text
         #preco_prod_antigo = self.ids.valor_conta_antiga.text
@@ -143,6 +149,19 @@ class PostPage(Screen):
             f"\U0001F3F7 Use o cupom: {cupom_usada}\n\n"
             f"\u27A1 {link_aff}"
         ])
+        self.ids.link_produto.text = ""
+        self.ids.desc_prod.text = ""
+        self.ids.title_prod.text = ""
+        self.ids.valor_prod.text = ""
+        self.ids.cupom_conta_nova.text = ""
+        self.ids.url_imagem.text = ""
+        self.ids.link_afiliado.text = ""
+        self.ids.v_prod.text = ""
+        self.ids.valor_prod.text = ""
+        self.ids.v_2.text = ""
+        self.ids.valor_v2.text = ""
+        self.ids.v_3.text = ""
+        self.ids.valor_v3.text = ""
 
         pass
 
@@ -205,15 +224,18 @@ class PostPage(Screen):
                 self.ids.title_prod.text = ""
                 self.ids.valor_prod.text = ""
                 self.ids.cupom_conta_nova.text = ""
-                self.ids.valor_conta_antiga.text = ""
-                self.ids.cupom_conta_antiga.text = ""
                 self.ids.url_imagem.text = ""
                 self.ids.link_afiliado.text = ""
+                self.ids.v_prod.text = ""
+                self.ids.valor_prod.text = ""
+                self.ids.v_2.text = ""
+                self.ids.valor_v2.text = ""
+                self.ids.v_3.text = ""
+                self.ids.valor_v3.text = ""
 
         except TopException as e:
             print(e)
         pass
-    pass
 
 GUI = Builder.load_file("main.kv")
 class MainApp(App):
