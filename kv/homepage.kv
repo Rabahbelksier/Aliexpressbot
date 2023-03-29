@@ -3,14 +3,18 @@
         orientation: 'vertical'
         rows: 1
         cols: 2
-        padding: 10
-        spacing: 10
+        padding: 5
+        spacing: 3
         Label:
             id: msg_err
             text: ""
             color: 0.5, 0.6, 1, 1
             font_size: 20
             bold: True
+            size_hint: (1, None)
+            size: (0, 0)
+            height: self.texture_size[1]
+            pos_hint: {'center_x': 0.5, 'center_y': 0.5}
         TextInput:
             id: link_produto
             required: True
