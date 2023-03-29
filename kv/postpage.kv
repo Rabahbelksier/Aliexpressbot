@@ -1,4 +1,4 @@
-<HomePage>:
+<PostPage>:
     BoxLayout:
         orientation: 'vertical'
         rows: 1
@@ -31,22 +31,53 @@
             id: title_prod
             multiline: False
             hint_text: "Título do Produto"
-        TextInput:
-            id: valor_prod
-            multiline: False
-            hint_text: "Valor da Conta Nova"
+        GridLayout:
+            cols: 2
+            size_hint: (1, 1)
+            width: self.width
+            height: dp(50)
+            spacing: 5
+            TextInput:
+                id: v_prod
+                multiline: False
+                width: dp(50)
+                hint_text: "1 Variação do Produto"
+            TextInput:
+                id: valor_prod
+                multiline: False
+                hint_text: "Digite o valor da Primeira Variaçao"
+        GridLayout:
+            cols: 2
+            size_hint: (1, 1)
+            width: self.width
+            height: dp(50)
+            spacing: 5
+            TextInput:
+                id: v_2
+                multiline: False
+                hint_text: "2º Variação do Produto"
+            TextInput:
+                id: valor_v2
+                multiline: False
+                hint_text: "Digite o valor da 2º Variação"
+        GridLayout:
+            cols: 2
+            size_hint: (1, 1)
+            width: self.width
+            height: dp(50)
+            spacing: 5
+            TextInput:
+                id: v_3
+                multiline: False
+                hint_text: "3º Variação do Produto"
+            TextInput:
+                id: valor_v3
+                multiline: False
+                hint_text: "Digite o valor da 3º Variação"
         TextInput:
             id: cupom_conta_nova
             multiline: False
-            hint_text: "Cupom da Conta Nova"
-        TextInput:
-            id: valor_conta_antiga
-            multiline: False
-            hint_text: "Valor da Conta Antiga"
-        TextInput:
-            id: cupom_conta_antiga
-            multiline: False
-            hint_text: "Cupom da Conta Antiga"
+            hint_text: "Digite o Cupom"
         TextInput:
             id: url_imagem
             multiline: False
@@ -55,6 +86,7 @@
             id: link_afiliado
             multiline: False
             hint_text: "Link Afiliado"
+
         BoxLayout:
             orientation: 'horizontal'
             size_hint_y: None
@@ -70,5 +102,5 @@
                 on_press: root.enviar_msg()
 
             Button:
-                text: "Modo + Opções"
-                on_release: app.mudar_tela("postpage")
+                text: "Post Simples"
+                on_press: app.mudar_tela("homepage")

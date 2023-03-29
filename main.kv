@@ -1,10 +1,12 @@
 #:include kv/homepage.kv
+#:include kv/postpage.kv
 #:import utils kivy.utils
 <TextInput@TextInput>:
     font_size: sp(18)
     foreground_color: 1, 1, 1, 1
-    background_color: 0.5, 0.5, 0, 0.5
+    background_color: 0.4, 0.63, 0.47, 0.2
     hint_text_color: 0, 0, 0, 1
+    height: 50
 FloatLayout:
     canvas:
         Color:
@@ -13,9 +15,12 @@ FloatLayout:
             size: self.size
             pos: self.pos
     ScreenManager:
-        pos_hint: {"right":0.1, "top": 0.1}
-        size_hint: 0.1, 0.1
+        pos_hint: {"right":1, "top": 1}
+        size_hint: 1, 1
         id: screen_manager
-    HomePage:
-        name: "homepage"
-        id: homepage
+        HomePage:
+            name: "homepage"
+            id: homepage
+        PostPage:
+            name: "postpage"
+            id: postpage
