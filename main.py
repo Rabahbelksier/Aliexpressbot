@@ -26,7 +26,7 @@ class HomePage(Screen):
             f"{desc_prod}\n\n\u26A1 {title_prod[0:75]}\n\n\U0001F525 Conta Nova\n\u2705 Valor: R${preco_prod}\U0001f631\U0001f631\U0001f631\n\U0001F3F7 Use o cupom: {cupom_desc}\n\n\U0001F525 Conta Antiga\n\u2705 Valor: R${preco_prod_antigo}\U0001f631\U0001f631\U0001f631\n\U0001F3F7 Use o cupom: {cupom_usada}\n\n\U0001F6D2{link_aff}"
         ])
 
-        self.ids.link_prod.text = ""
+        self.ids.link_produto.text = ""
         self.ids.desc_prod.text = ""
         self.ids.title_prod.text = ""
         self.ids.valor_prod.text = ""
@@ -40,7 +40,11 @@ class HomePage(Screen):
 
 
     def buscar_prod(self):
-        link_p = self.ids.link_prod.text
+        link_p = self.ids.link_produto.text
+        if not link_p:
+            self.ids.link_produto.hint_text = "Campo obrigatório"
+            return
+        link_p = self.ids.link_produto.text
         #desc_prod = self.ids.desc_prod.text
         print(link_p)
         parsed_url = urllib.parse.urlparse(link_p)
@@ -80,11 +84,29 @@ class HomePage(Screen):
                 self.ids.title_prod.text = str(title_prod)
                 self.ids.url_imagem.text = str(imagem_prod)
                 self.ids.link_afiliado.text = str(link_prod)
+                self.ids.msg_err.text = ""
+
+            else:
+                print("Produto não encontrado")
+                self.ids.msg_err.text = "Produto não encontrado"
+                self.ids.link_produto.text = ""
+                self.ids.desc_prod.text = ""
+                self.ids.title_prod.text = ""
+                self.ids.valor_prod.text = ""
+                self.ids.cupom_conta_nova.text = ""
+                self.ids.valor_conta_antiga.text = ""
+                self.ids.cupom_conta_antiga.text = ""
+                self.ids.url_imagem.text = ""
+                self.ids.link_afiliado.text = ""
+
+        except TopException as e:
+                print(e)
+
                 request_dict = {
-                    "promotion_link_type": 0,
-                    "source_values": link_prod,
-                    "tracking_id": "dmsimports"
-                }
+                        "promotion_link_type": 0,
+                        "source_values": link_prod,
+                        "tracking_id": "dmsimports"
+                         }
                 #  填充入参
                 #  如果为复杂类型，填数据结构json字符串
 
@@ -103,12 +125,16 @@ class HomePage(Screen):
                     link_aff = res.get('promotion_link')
                     print(link_aff)
                     self.ids.link_afiliado.text = str(link_aff)
+
+
+
                 except TopException as e:
                     print(e)
 
-        except TopException as e:
-            print(e)
-    pass
+
+
+
+
 
 def send_message_f(group_id, photo, caption_entities):
     bot.send_photo(group_id, photo, caption_entities)

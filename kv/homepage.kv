@@ -3,14 +3,23 @@
         orientation: 'vertical'
         rows: 1
         cols: 2
-        padding: 20
-        spacing: 15
+        padding: 10
+        spacing: 10
+        Label:
+            id: msg_err
+            text: ""
+            color: 0.5, 0.6, 1, 1
+            font_size: 20
+            bold: True
         TextInput:
-            id: link_prod
+            id: link_produto
+            required: True
             multiline: False
             hint_text: "Digite o link do Produto"
         TextInput:
             id: desc_prod
+            input_type: 'text'
+            input_mode: 'emoji'
             multiline: 5
             hint_text: "Descrição do Produto"
         TextInput:
