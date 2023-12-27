@@ -6,8 +6,8 @@ from topsdk.client import TopApiClient, TopException
 import urllib.parse
 import re
 
-client = TopApiClient(appkey='34173206', app_sercet='a0d5286213b1b65b06c3c2ec2f30681c', top_gateway_url='http://api.taobao.com/router/rest', verify_ssl=True)
-apiKey = "5900464566:AAGNUHqUKWNM88jXdas9qZQ5_wX14yJ9O94"
+client = TopApiClient(appkey='502304', app_sercet='qq6EcmVKOIzv7iBJUcJGPEboMzO8y9vG', top_gateway_url='http://api.taobao.com/router/rest', verify_ssl=True)
+apiKey = "6586708255:AAHO23LR49vLrhLF2B7lCHO4hZFBG2lxhds"
 bot = telebot.TeleBot(apiKey)
 class HomePage(Screen):
 
